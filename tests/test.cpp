@@ -1,1 +1,1 @@
-#include "strong_type/s_type.h"
+#include "strong_type/strong_type.h"
