@@ -5,7 +5,6 @@
 
 namespace strong_type
 {
-
     template <typename T>
     class s_type_base
     {
