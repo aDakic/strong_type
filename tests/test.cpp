@@ -1,0 +1,1 @@
+#include "strong_type/s_type.h"
