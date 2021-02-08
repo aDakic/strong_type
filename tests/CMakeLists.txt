@@ -1,4 +1,4 @@
-set(test_sources test.cpp)
+set(test_sources addable_feature_test.cpp)
 
 add_executable(test ${test_sources})
 

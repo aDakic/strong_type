@@ -4,6 +4,7 @@
 
 namespace strong_type
 {
+    // strong type trait
     template <typename T>
     struct is_strong_type : std::false_type {};
 
@@ -13,6 +14,7 @@ namespace strong_type
     template <typename T>
     constexpr bool is_strong_type_v = is_strong_type<T>::value;
 
+    // Remove references and const-volatile qualifiers
     template<typename T>
     struct remove_cvref
     {
@@ -22,6 +24,7 @@ namespace strong_type
     template<typename T>
     using remove_cvref_t = typename remove_cvref<T>::type;
 
+    // Gets underlying type
     template<typename T>
     constexpr inline decltype(auto) strip(T&& t)
     {

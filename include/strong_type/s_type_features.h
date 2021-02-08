@@ -16,4 +16,17 @@ namespace strong_type
             }
         };
     }
+
+    struct addable
+    {
+        template <typename T>
+        using type = details::addable<T>;
+    };
+
+    template <typename OtherOperand>
+    struct addable_with
+    {
+        template <typename T>
+        using type = details::addable<T, OtherOperand>;
+    };
 }
