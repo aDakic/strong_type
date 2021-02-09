@@ -11,6 +11,6 @@ TEST(test_st, subtractable_traits)
 
     ASSERT_EQ(long_t(3).get() - 1, 2);
 
-    long_t tree(5 - two.get());
-    ASSERT_EQ(tree.get(), 3);
+    long_t one(two - 1);
+    ASSERT_EQ(one.get(), 1);
 }
