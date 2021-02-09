@@ -8,5 +8,9 @@ TEST(test_st, addable_traits)
 
     integer_t two (integer_t(1) + integer_t(1));
     ASSERT_EQ(two.get(), 2);
+
     ASSERT_EQ(integer_t(1).get() + 1, 2);
+
+    integer_t tree(1 + two.get());
+    ASSERT_EQ(tree.get(), 3);
 }
