@@ -2,7 +2,8 @@ set(test_sources
     addable_feature_test.cpp
     subtractable_feature_test.cpp
     multiplicable_feature_test.cpp
-    dividable_feature_test.cpp)
+    dividable_feature_test.cpp
+    comparable_feature_test.cpp)
 
 add_executable(test ${test_sources})
 
