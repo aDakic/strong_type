@@ -1,8 +1,5 @@
 #pragma once
 
-#include "s_type.h"
-#include "s_type_traits.h"
-
 namespace strong_type
 {
     namespace details
