@@ -4,7 +4,7 @@ namespace strong_type
 {
     namespace details
     {
-    template <typename T, typename otherOperandT = T, typename ReturnT = T>
+        template <typename T, typename otherOperandT = T, typename ReturnT = T>
         struct dividable
         {
             friend constexpr ReturnT operator/(const T &lhs, const otherOperandT &rhs) noexcept
