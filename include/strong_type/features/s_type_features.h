@@ -9,3 +9,4 @@
 #include "s_type_comparable.h"
 #include "s_type_incrementable.h"
 #include "s_type_decrementable.h"
+#include "s_type_bitable.h"
