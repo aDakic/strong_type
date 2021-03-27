@@ -44,6 +44,7 @@ install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
               "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
-#if(${PROJECT_NAME}_ENABLE_UNIT_TESTING)
+option(${PROJECT_NAME}_ENABLE_UNIT_TESTING "Enable unit tests for the projects (from the `test` subfolder)." ON)
+if(${PROJECT_NAME}_ENABLE_UNIT_TESTING)
         add_subdirectory(tests)
-#endif()
+endif()
