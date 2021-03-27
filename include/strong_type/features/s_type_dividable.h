@@ -11,6 +11,13 @@ namespace strong_type
             {
                 return ReturnT(lhs.get() / strip(rhs));
             }
+
+            template <typename U = T, typename otherOperandU = otherOperandT,
+                      typename = std::enable_if_t<!std::is_same_v<U, otherOperandU>>>
+            friend constexpr ReturnT operator/(const otherOperandT &lhs, const T &rhs) noexcept
+            {
+                return ReturnT(strip(lhs) / rhs.get());
+            }
         };
     }
 

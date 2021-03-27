@@ -13,4 +13,7 @@ TEST(test_st, dividable_traits)
 
     int_t nine(int_t(27) / 3);
     ASSERT_EQ(nine.get(), 9);
+
+    int_t three = 6 / int_t(2);
+    ASSERT_EQ(three.get(), 3);
 }

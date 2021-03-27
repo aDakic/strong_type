@@ -24,6 +24,7 @@ install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
+#FIXME: Add files included by strong_type
 install(FILES ${PROJECT_SOURCE_DIR}/include/strong_type/strong_type.h DESTINATION include)
 
 write_basic_package_version_file("${PROJECT_NAME}ConfigVersion.cmake"
