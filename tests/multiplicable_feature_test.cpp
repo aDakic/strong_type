@@ -13,4 +13,7 @@ TEST(test_st, multiplicable_traits)
 
     long_t nine(long_t(3) * 3);
     ASSERT_EQ(nine.get(), 9);
+
+    long_t sixteen = 4 * four;
+    ASSERT_EQ(sixteen.get(), 16);
 }
