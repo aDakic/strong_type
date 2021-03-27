@@ -1,5 +1,5 @@
 #pragma once
-
+#include <type_traits>
 namespace strong_type
 {
     namespace details
@@ -10,6 +10,13 @@ namespace strong_type
             friend constexpr ReturnT operator+(const T &lhs, const OtherOperandT &rhs) noexcept
             {
                 return ReturnT(lhs.get() + strip(rhs));
+            }
+
+            template <typename U = T, typename OtherOperandU = OtherOperandT,
+                      typename = std::enable_if_t<!std::is_same_v<U, OtherOperandU>>>
+            friend constexpr ReturnT operator+(const OtherOperandT &lhs, const T &rhs) noexcept
+            {
+                return ReturnT(strip(lhs) + rhs.get());
             }
         };
     }

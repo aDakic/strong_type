@@ -13,4 +13,7 @@ TEST(test_st, addable_traits)
 
     integer_t tree(two + 1);
     ASSERT_EQ(tree.get(), 3);
+
+    integer_t four = 2 + two;
+    ASSERT_EQ(four.get(), 4);
 }
