@@ -47,3 +47,18 @@ using postion = strong_type<int,
                     strong_type::addable_with<offset>>; // postion + offset = postion
 ```
 
+## Strong type operation
+Name  | Description
+------------- | -------------
+addable`<T>`  | Two `T` can be added
+addable_with`<U>`  | `T` can be added with `U` to obtain `T`
+subtractable`<T>`  | Two `T` can be subtracted
+subtractable_to`<U>`  | `T` can be subtracted to `U` to obtain `T`
+multiplicable`<T>`  | Two `T` can be multiplied
+multiplicable_with`<U>`  | `T` can be multiplied with `U` to obtain `T`
+dividable`<T>` | Two `T` can be divided
+dividabl_by`<U>`  | `T` can be divided with `U` to obtain `T`
+comparable`<T>` | Two `T` objects can be compared for equality (supports `==`, `!=`, `>`, `>=`, `<`, and `<=`)
+bitwiseable`<T>` | Two `T` objects can be `OR`-ed, `AND`-ed or `XOR`-ed
+incrementable`<T>` | `T` object can be pre-incremented and post-incremented
+decrementable`<T>` | `T` object can be pre-decremented and post-decremented
