@@ -42,9 +42,9 @@ using offset = strong_type<int,
                 strong_type::subtractable, // offset - offset = offset
                 strong_type::multiplicable_with<int>>; // offset * int = offset
 
-using postion = strong_type<int,
-                    struct postion_tag,
-                    strong_type::addable_with<offset>>; // postion + offset = postion
+using position = strong_type<int,
+                    struct position_tag,
+                    strong_type::addable_with<offset>>; // position + offset = position
 ```
 
 ## Strong type operation
