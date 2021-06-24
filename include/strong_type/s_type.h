@@ -14,6 +14,7 @@ namespace strong_type
         explicit constexpr s_type_base(s_type_base &&)       noexcept(std::is_nothrow_move_constructible_v<T>) = default;
         constexpr s_type_base& operator=(const s_type_base&) noexcept(std::is_nothrow_copy_assignable_v<T>)    = default;
         constexpr s_type_base& operator=(s_type_base&&)      noexcept(std::is_nothrow_move_assignable_v<T>)    = default;
+        ~s_type_base() noexcept = default;
 
         explicit constexpr s_type_base(const T& t) noexcept(std::is_nothrow_copy_constructible_v<T>) : _t(t) {}
         explicit constexpr s_type_base(T&& t)      noexcept(std::is_nothrow_move_constructible_v<T>) : _t(std::move(t)) {}
@@ -28,13 +29,10 @@ namespace strong_type
     };
 
     template <typename T, typename Tag, typename... Features>
-    class strong_type:
-        public Features::template type<strong_type<T, Tag, Features...>>...,
-        public s_type_base<T>
+    struct strong_type:
+        Features::template type<strong_type<T, Tag, Features...>>...,
+        s_type_base<T>
     {
         using s_type_base<T>::s_type_base;
-
-        using value_type = T;
-        using tag_type = Tag;  
     };
 }

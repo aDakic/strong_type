@@ -12,7 +12,7 @@ namespace strong_type
     struct is_strong_type<strong_type<T, Tag, Feature...>> : std::true_type {};
 
     template <typename T>
-    constexpr bool is_strong_type_v = is_strong_type<T>::value;
+    constexpr inline bool is_strong_type_v = is_strong_type<T>::value;
 
     // Remove references and const-volatile qualifiers
     template<typename T>
