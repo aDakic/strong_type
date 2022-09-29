@@ -4,19 +4,16 @@ project(strong_type
         VERSION 1.0.0
         LANGUAGES CXX)
 
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
 add_library(${PROJECT_NAME} INTERFACE)
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 
-include(GNUInstallDirs)
-include(CMakePackageConfigHelpers)
-
-target_include_directories(
-    ${PROJECT_NAME}
-    INTERFACE 
-      $<INSTALL_INTERFACE:include>    
-      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                                                     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 install(TARGETS ${PROJECT_NAME}
         EXPORT ${PROJECT_NAME}_Targets
@@ -24,16 +21,13 @@ install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME} DESTINATION include)
-
 write_basic_package_version_file("${PROJECT_NAME}ConfigVersion.cmake"
                                  VERSION ${PROJECT_VERSION}
                                  COMPATIBILITY SameMajorVersion)
-configure_package_config_file(
-  ${CMAKE_CURRENT_LIST_DIR}/cmake/${PROJECT_NAME}_config.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_config.cmake
-  INSTALL_DESTINATION
-    ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+
+configure_package_config_file("${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}.cmake.in"
+                              "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+                              INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
 install(EXPORT ${PROJECT_NAME}_Targets
         FILE ${PROJECT_NAME}Targets.cmake
@@ -41,10 +35,13 @@ install(EXPORT ${PROJECT_NAME}_Targets
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
 install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-              "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+        "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
-option(${PROJECT_NAME}_ENABLE_UNIT_TESTING "Enable unit tests for the projects (from the `test` subfolder)." ON)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
 if(${PROJECT_NAME}_ENABLE_UNIT_TESTING)
-        add_subdirectory(tests)
+    enable_testing()
+    add_subdirectory(tests)
 endif()

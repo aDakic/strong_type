@@ -8,10 +8,10 @@ set(test_sources
     decrementable_feature_test.cpp
     bitwiseable_feature_test.cpp)
 
-add_executable(test ${test_sources})
+add_executable(tests ${test_sources})
 
 target_compile_features(
-   test
+  tests
    PUBLIC
    cxx_std_17
 )
@@ -27,11 +27,15 @@ FetchContent_MakeAvailable(googletest)
 #find_package(GTest CONFIG REQUIRED)
 
 include(GoogleTest)
-gtest_discover_tests(test)
+gtest_discover_tests(tests)
 
 target_link_libraries(
-  test
+  tests
   PUBLIC
 gtest_main
   strong_type::strong_type
 )
+
+add_test(
+  NAME tests
+  COMMAND tests)
