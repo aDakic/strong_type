@@ -1,0 +1,8 @@
+[requires]
+gtest/cci.20210126
+
+[options]
+gtest:no_main = False
+
+[generators]
+cmake_find_package
