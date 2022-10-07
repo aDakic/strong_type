@@ -7,6 +7,7 @@ project(strong_type
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(cmake/Settings.cmake)
+include(cmake/Tools.cmake)
 
 set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
 set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
