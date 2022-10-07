@@ -1,15 +1,18 @@
-#include <gtest/gtest.h>
-
+#include "catch2/catch_all.hpp"
 #include "strong_type/strong_type.h"
 
-TEST(test_st, comparable_traits)
+TEST_CASE("Test comparability of the two strong types", "[strong_type_comparable]")
 {
-    using comparable_st = strong_type::strong_type<int, struct comparable_st_tag, strong_type::comparable>;
+    using integer_t = strong_type::strong_type<int, struct comparable_st_tag, strong_type::comparable>;
 
-    ASSERT_EQ(comparable_st(1), comparable_st(1));
-    ASSERT_NE(comparable_st(1), comparable_st(5));
-    ASSERT_GE(comparable_st(5), comparable_st(1));
-    ASSERT_GT(comparable_st(5), comparable_st(1));
-    ASSERT_LE(comparable_st(1), comparable_st(5));
-    ASSERT_LT(comparable_st(1), comparable_st(5));
+    integer_t one{ 1 };
+    integer_t two{ 2 };
+    integer_t three{ 3 };
+
+    REQUIRE(one == integer_t{ 1 });
+    REQUIRE(one != three);
+    REQUIRE(one < three);
+    REQUIRE(three > two);
+    REQUIRE(one <= two);
+    REQUIRE(three >= two);
 }

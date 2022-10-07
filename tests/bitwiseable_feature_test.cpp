@@ -1,17 +1,33 @@
-#include <gtest/gtest.h>
-
+#include "catch2/catch_all.hpp"
 #include "strong_type/strong_type.h"
 
-TEST(test_st, bitable_traits)
+TEST_CASE("Test logical and of the two strong types", "[strong_type_bitwiseable]")
 {
-    using short_t = strong_type::strong_type<short, struct bitwiseable_st_tag, strong_type::bitwiseable>;
+    using integer_t = strong_type::strong_type<int, struct bitwiseable_st_tag, strong_type::bitwiseable>;
 
-    short_t zero(short_t(1) & short_t(0));
-    ASSERT_EQ(zero.get(), 0);
+    integer_t zero{ 0 };
+    integer_t one{ 1 };
 
-    short_t one(short_t(1) | short_t(1));
-    ASSERT_EQ(one.get(), 1);
+    bool result = one & zero;
+    REQUIRE_FALSE(result);
+}
 
-    short_t zeroo(short_t(1) ^ short_t(1));
-    ASSERT_EQ(zeroo.get(), 0);
+TEST_CASE("Test logical or of the two strong types", "[strong_type_bitwiseable]")
+{
+    using integer_t = strong_type::strong_type<int, struct bitwiseable_st_tag, strong_type::bitwiseable>;
+
+    integer_t one{ 1 };
+
+    bool result = one & integer_t{ 1 };
+    REQUIRE(result);
+}
+
+TEST_CASE("Test logical xor of the two strong types", "[strong_type_bitwiseable]")
+{
+    using integer_t = strong_type::strong_type<int, struct bitwiseable_st_tag, strong_type::bitwiseable>;
+
+    integer_t one{ 1 };
+
+    bool result = one ^ integer_t { 1 };
+    REQUIRE_FALSE(result);
 }

@@ -1,20 +1,23 @@
-#include <gtest/gtest.h>
-
+#include "catch2/catch_all.hpp"
 #include "strong_type/strong_type.h"
 
-TEST(test_st, subtractable_traits)
+TEST_CASE("Test difference of the two strong types", "[strong_type_subtractable]")
 {
-    using int_t = strong_type::strong_type<int, struct subtractable_st_tag, strong_type::subtractable,
-                                           strong_type::subtractable_to<int>>;
+    using integer_t = strong_type::strong_type<int, struct subtractable_st_tag, strong_type::subtractable>;
 
-    int_t two(int_t(3) - int_t(1));
-    ASSERT_EQ(two.get(), 2);
+    integer_t two = integer_t{ 4 } - integer_t{ 2 };
+    REQUIRE(two.get() == 2);
+}
 
-    ASSERT_EQ(int_t(3).get() - 1, 2);
+TEST_CASE("Test sum of the strong type and integer", "[strong_type_subtractable]")
+{
+    using integer_t = strong_type::strong_type<int, struct subtractable_st_tag, strong_type::subtractable,
+                                               strong_type::subtractable_to<int>>;
 
-    int_t one(two - 1);
-    ASSERT_EQ(one.get(), 1);
+    integer_t one{ 1 };
+    integer_t zero = one - 1;
+    REQUIRE(zero.get() == 0);
 
-    int_t four = 5 - int_t(1);
-    ASSERT_EQ(four.get(), 4);
+    integer_t two = 3 - one;
+    REQUIRE(two.get() == 2);
 }

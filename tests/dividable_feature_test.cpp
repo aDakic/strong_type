@@ -1,20 +1,26 @@
-#include <gtest/gtest.h>
-
+#include "catch2/catch_all.hpp"
 #include "strong_type/strong_type.h"
 
-TEST(test_st, dividable_traits)
+TEST_CASE("Test the division of two strong types", "[strong_type_dividable]")
 {
-    using int_t =
+    using integer_t = strong_type::strong_type<int, struct dividable_st_tag, strong_type::dividable>;
+    integer_t two{ 2 };
+    integer_t four{ 4 };
+
+    integer_t result = four / two;
+    REQUIRE(result.get() == 2);
+}
+
+TEST_CASE("Test the division of the strong type and integer", "[strong_type_dividable]")
+{
+    using integer_t =
         strong_type::strong_type<int, struct dividable_st_tag, strong_type::dividable, strong_type::dividable_by<int>>;
 
-    int_t four(int_t(8) / int_t(2));
-    ASSERT_EQ(four.get(), 4);
+    integer_t four{ 4 };
+    integer_t result = four / 2;
+    REQUIRE(result.get() == 2);
 
-    ASSERT_EQ(int_t(12).get() / 2, 6);
-
-    int_t nine(int_t(27) / 3);
-    ASSERT_EQ(nine.get(), 9);
-
-    int_t three = 6 / int_t(2);
-    ASSERT_EQ(three.get(), 3);
+    integer_t two{ 2 };
+    integer_t result_2 = 4 / two;
+    REQUIRE(result_2.get() == 2);
 }
