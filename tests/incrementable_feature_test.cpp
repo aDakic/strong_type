@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
+
 #include "strong_type/strong_type.h"
 
 TEST(test_st, incrementable_traits)
 {
-    using int_t = strong_type::strong_type<int, struct incrementable_st_tag, strong_type::comparable,
-                                                                             strong_type::incrementable>;
+    using int_t =
+        strong_type::strong_type<int, struct incrementable_st_tag, strong_type::comparable, strong_type::incrementable>;
 
     int_t number(4);
     int_t four(4);

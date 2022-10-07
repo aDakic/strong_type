@@ -5,13 +5,17 @@
 namespace strong_type
 {
     // strong type trait
-    template <typename T>
-    struct is_strong_type : std::false_type {};
+    template<typename T>
+    struct is_strong_type : std::false_type
+    {
+    };
 
-    template <typename T, typename Tag, typename... Feature>
-    struct is_strong_type<strong_type<T, Tag, Feature...>> : std::true_type {};
+    template<typename T, typename Tag, typename... Feature>
+    struct is_strong_type<strong_type<T, Tag, Feature...>> : std::true_type
+    {
+    };
 
-    template <typename T>
+    template<typename T>
     constexpr inline bool is_strong_type_v = is_strong_type<T>::value;
 
     // Remove references and const-volatile qualifiers
@@ -26,7 +30,7 @@ namespace strong_type
 
     // Gets underlying type
     template<typename T>
-    constexpr inline decltype(auto) strip(T&& t)
+    constexpr inline decltype(auto) strip(T &&t)
     {
         if constexpr (is_strong_type_v<remove_cvref_t<T>>)
         {
@@ -37,4 +41,4 @@ namespace strong_type
             return std::forward<T>(t);
         }
     }
-}
+}  // namespace strong_type

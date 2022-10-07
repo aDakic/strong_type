@@ -9,3 +9,18 @@ if(${PROJECT_NAME}_ENABLE_CLANG_TIDY)
   endif()
 
 endif()
+
+if(${PROJECT_NAME}_ENABLE_CLANG_FORMAT)
+file(GLOB_RECURSE ALL_SOURCE_FILES
+     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/*.h
+     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/features/*.h
+     ${PROJECT_SOURCE_DIR}/tests/*.cpp)
+
+find_program(${PROJECT_NAME}_CLANG_FORMAT_BINARY clang-format)
+
+add_custom_target(
+  clang-format
+  COMMAND ${${PROJECT_NAME}_CLANG_FORMAT_BINARY}
+  -i ${ALL_SOURCE_FILES})
+
+endif()

@@ -6,7 +6,7 @@ namespace strong_type
 {
     namespace details
     {
-        template <typename T, typename otherOperandT = T>
+        template<typename T, typename otherOperandT = T>
         struct comparable
         {
             friend constexpr bool operator==(const T &lhs, const otherOperandT &rhs) noexcept
@@ -39,11 +39,11 @@ namespace strong_type
                 return lhs.get() <= strip(rhs);
             }
         };
-    }
+    }  // namespace details
 
     struct comparable
     {
-        template <typename T>
+        template<typename T>
         using type = details::comparable<T>;
     };
-}
+}  // namespace strong_type

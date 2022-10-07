@@ -6,7 +6,7 @@ namespace strong_type
 {
     namespace details
     {
-        template <typename T, typename otherOperandT = T>
+        template<typename T, typename otherOperandT = T>
         struct bitwiseable
         {
             friend constexpr bool operator&(const T &lhs, const otherOperandT &rhs) noexcept
@@ -24,11 +24,11 @@ namespace strong_type
                 return lhs.get() ^ strip(rhs);
             }
         };
-    }
+    }  // namespace details
 
     struct bitwiseable
     {
-        template <typename T>
+        template<typename T>
         using type = details::bitwiseable<T>;
     };
-}
+}  // namespace strong_type
