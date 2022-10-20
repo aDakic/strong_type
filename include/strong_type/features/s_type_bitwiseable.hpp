@@ -1,6 +1,6 @@
 #pragma once
 
-#include "s_type_traits.h"
+#include "strip.hpp"
 
 namespace strong_type
 {

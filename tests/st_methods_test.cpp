@@ -1,5 +1,5 @@
 #include "catch2/catch_all.hpp"
-#include "strong_type/strong_type.h"
+#include "strong_type/strong_type.hpp"
 
 TEST_CASE("Test get methods of strong type", "[strong_type_methods]")
 {

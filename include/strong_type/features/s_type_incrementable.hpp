@@ -1,33 +1,33 @@
 #pragma once
 
-#include "s_type_traits.h"
+#include "strip.hpp"
 
 namespace strong_type
 {
     namespace details
     {
         template<typename T>
-        struct decrementable
+        struct incrementable
         {
-            friend constexpr T &operator--(T &t) noexcept
+            friend constexpr T &operator++(T &t) noexcept
             {
-                --t.get();
+                ++t.get();
                 return t;
             }
 
-            friend constexpr const T operator--(T &t, int) noexcept
+            friend constexpr T operator++(T &t, int) noexcept
             {
                 T ret(t);
 
-                --t.get();
+                ++t.get();
                 return ret;
             }
         };
     }  // namespace details
 
-    struct decrementable
+    struct incrementable
     {
         template<typename T>
-        using type = details::decrementable<T>;
+        using type = details::incrementable<T>;
     };
 }  // namespace strong_type

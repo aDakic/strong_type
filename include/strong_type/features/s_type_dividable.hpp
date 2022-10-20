@@ -1,39 +1,38 @@
 #pragma once
 
-#include "s_type_traits.h"
+#include "strip.hpp"
 
 namespace strong_type
 {
     namespace details
     {
         template<typename T, typename otherOperandT = T, typename ReturnT = T>
-        struct multiplicable
+        struct dividable
         {
-            friend constexpr ReturnT operator*(const T &lhs, const otherOperandT &rhs) noexcept
+            friend constexpr ReturnT operator/(const T &lhs, const otherOperandT &rhs) noexcept
             {
-                return ReturnT(lhs.get() * strip(rhs));
+                return ReturnT(lhs.get() / strip(rhs));
             }
 
             template<typename U = T, typename otherOperandU = otherOperandT,
                      typename = std::enable_if_t<!std::is_same_v<U, otherOperandU>>>
-            friend constexpr ReturnT operator*(const otherOperandT &lhs, const T &rhs) noexcept
+            friend constexpr ReturnT operator/(const otherOperandT &lhs, const T &rhs) noexcept
             {
-                return ReturnT(strip(lhs) * rhs.get());
+                return ReturnT(strip(lhs) / rhs.get());
             }
         };
     }  // namespace details
 
-    struct multiplicable
+    struct dividable
     {
         template<typename T>
-        using type = details::multiplicable<T>;
+        using type = details::dividable<T>;
     };
 
     template<typename OtherOperand>
-    struct multiplicable_with
+    struct dividable_by
     {
         template<typename T>
-        using type = details::multiplicable<T, OtherOperand>;
+        using type = details::dividable<T, OtherOperand>;
     };
-
 }  // namespace strong_type
