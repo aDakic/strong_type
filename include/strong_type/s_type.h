@@ -9,12 +9,7 @@ namespace strong_type
     class s_type_base
     {
     public:
-        constexpr s_type_base() noexcept(std::is_nothrow_constructible_v<T>)                         = default;
-        constexpr s_type_base(const s_type_base &) noexcept(std::is_nothrow_copy_constructible_v<T>) = default;
-        constexpr s_type_base(s_type_base &&) noexcept(std::is_nothrow_move_constructible_v<T>)      = default;
-        constexpr s_type_base &operator=(const s_type_base &) noexcept(std::is_nothrow_copy_assignable_v<T>) = default;
-        constexpr s_type_base &operator=(s_type_base &&) noexcept(std::is_nothrow_move_assignable_v<T>) = default;
-        ~s_type_base() noexcept                                                                         = default;
+        static_assert(not std::is_reference_v<T>);
 
         explicit constexpr s_type_base(const T &t) noexcept(std::is_nothrow_copy_constructible_v<T>) : _t(t) { }
         explicit constexpr s_type_base(T &&t) noexcept(std::is_nothrow_move_constructible_v<T>) : _t(std::move(t)) { }

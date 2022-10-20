@@ -1,4 +1,5 @@
 set(test_sources
+    st_methods_test.cpp
     addable_feature_test.cpp
     bitwiseable_feature_test.cpp
     comparable_feature_test.cpp
