@@ -14,29 +14,9 @@ namespace strong_type
                 return lhs.get() == strip(rhs);
             }
 
-            friend constexpr bool operator!=(const StrongT &lhs, const otherOperandT &rhs) noexcept
+            friend constexpr auto operator<=>(const StrongT &lhs, const otherOperandT &rhs) noexcept
             {
-                return lhs.get() != strip(rhs);
-            }
-
-            friend constexpr bool operator>(const StrongT &lhs, const otherOperandT &rhs) noexcept
-            {
-                return lhs.get() > strip(rhs);
-            }
-
-            friend constexpr bool operator<(const StrongT &lhs, const otherOperandT &rhs) noexcept
-            {
-                return lhs.get() < strip(rhs);
-            }
-
-            friend constexpr bool operator>=(const StrongT &lhs, const otherOperandT &rhs) noexcept
-            {
-                return lhs.get() >= strip(rhs);
-            }
-
-            friend constexpr bool operator<=(const StrongT &lhs, const otherOperandT &rhs) noexcept
-            {
-                return lhs.get() <= strip(rhs);
+                return lhs.get() <=> strip(rhs);
             }
         };
     }  // namespace details
