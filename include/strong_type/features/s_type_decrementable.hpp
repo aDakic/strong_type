@@ -6,18 +6,18 @@ namespace strong_type
 {
     namespace details
     {
-        template<typename T>
+        template<typename StrongT>
         struct decrementable
         {
-            friend constexpr T &operator--(T &t) noexcept
+            friend constexpr StrongT &operator--(StrongT &t) noexcept
             {
                 --t.get();
                 return t;
             }
 
-            friend constexpr T operator--(T &t, int) noexcept
+            friend constexpr StrongT operator--(StrongT &t, int) noexcept
             {
-                T ret(t);
+                StrongT ret(t);
 
                 --t.get();
                 return ret;
@@ -27,7 +27,7 @@ namespace strong_type
 
     struct decrementable
     {
-        template<typename T>
-        using type = details::decrementable<T>;
+        template<typename StrongT>
+        using type = details::decrementable<StrongT>;
     };
 }  // namespace strong_type

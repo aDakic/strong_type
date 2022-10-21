@@ -12,7 +12,7 @@ set(test_sources
 find_package(Catch2 REQUIRED)
 
 add_executable(tests ${test_sources})
-target_compile_features(tests PUBLIC cxx_std_17)
+target_compile_features(tests PUBLIC cxx_std_20)
 target_link_libraries(tests PUBLIC Catch2::Catch2WithMain strong_type::strong_type)
 
 add_test(NAME tests COMMAND tests)

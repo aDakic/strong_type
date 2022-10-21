@@ -6,17 +6,16 @@ namespace strong_type
 {
     namespace details
     {
-        template<typename T, typename otherOperandT = T, typename ReturnT = T>
+        template<typename StrongT, typename OtherOperandT = StrongT, typename ReturnT = StrongT>
         struct multiplicable
         {
-            friend constexpr ReturnT operator*(const T &lhs, const otherOperandT &rhs) noexcept
+            friend constexpr ReturnT operator*(const StrongT &lhs, const OtherOperandT &rhs) noexcept
             {
                 return ReturnT(lhs.get() * strip(rhs));
             }
 
-            template<typename U = T, typename otherOperandU = otherOperandT,
-                     typename = std::enable_if_t<!std::is_same_v<U, otherOperandU>>>
-            friend constexpr ReturnT operator*(const otherOperandT &lhs, const T &rhs) noexcept
+            friend constexpr ReturnT operator*(const OtherOperandT &lhs, const StrongT &rhs) noexcept
+                requires(not std::same_as<StrongT, OtherOperandT>)
             {
                 return ReturnT(strip(lhs) * rhs.get());
             }
@@ -25,15 +24,15 @@ namespace strong_type
 
     struct multiplicable
     {
-        template<typename T>
-        using type = details::multiplicable<T>;
+        template<typename StrongT>
+        using type = details::multiplicable<StrongT>;
     };
 
     template<typename OtherOperand>
     struct multiplicable_with
     {
-        template<typename T>
-        using type = details::multiplicable<T, OtherOperand>;
+        template<typename StrongT>
+        using type = details::multiplicable<StrongT, OtherOperand>;
     };
 
 }  // namespace strong_type

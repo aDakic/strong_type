@@ -6,20 +6,20 @@ namespace strong_type
 {
     namespace details
     {
-        template<typename T>
+        template<typename StrongT>
         struct incrementable
         {
-            friend constexpr T &operator++(T &t) noexcept
+            friend constexpr StrongT &operator++(StrongT &st) noexcept
             {
-                ++t.get();
-                return t;
+                ++st.get();
+                return st;
             }
 
-            friend constexpr T operator++(T &t, int) noexcept
+            friend constexpr StrongT operator++(StrongT &st, int) noexcept
             {
-                T ret(t);
+                StrongT ret(st);
 
-                ++t.get();
+                ++st.get();
                 return ret;
             }
         };
@@ -27,7 +27,7 @@ namespace strong_type
 
     struct incrementable
     {
-        template<typename T>
-        using type = details::incrementable<T>;
+        template<typename StrongT>
+        using type = details::incrementable<StrongT>;
     };
 }  // namespace strong_type

@@ -6,11 +6,9 @@
 namespace strong_type
 {
     template<typename T>
-    class s_type_base
+    requires(not std::is_reference_v<T>) class s_type_base
     {
     public:
-        static_assert(not std::is_reference_v<T>);
-
         explicit constexpr s_type_base(const T &t) noexcept(std::is_nothrow_copy_constructible_v<T>) : _t(t) { }
         explicit constexpr s_type_base(T &&t) noexcept(std::is_nothrow_move_constructible_v<T>) : _t(std::move(t)) { }
 
