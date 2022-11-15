@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "static_string.hpp"
+#include "features/static_string.hpp"
 
 namespace strong_type
 {
@@ -23,9 +23,10 @@ namespace strong_type
         T _t;
     };
 
-    template<typename T, typename Tag, typename... Features>
+    template<typename T, static_string Tag, typename... Features>
     struct strong_type : Features::template type<strong_type<T, Tag, Features...>>..., s_type_base<T>
     {
         using s_type_base<T>::s_type_base;
     };
+
 }  // namespace strong_type

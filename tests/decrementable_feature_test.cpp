@@ -3,8 +3,7 @@
 
 TEST_CASE("Test decrement operator of the strong type", "[strong_type_decrementable]")
 {
-    using integer_t =
-        strong_type::strong_type<int, struct decrementable_st_tag, strong_type::comparable, strong_type::decrementable>;
+    using integer_t = strong_type::strong_type<int, "integer_t", strong_type::comparable, strong_type::decrementable>;
 
     integer_t number{ 4 };
     integer_t two{ 2 };

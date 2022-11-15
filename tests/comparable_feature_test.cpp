@@ -3,7 +3,7 @@
 
 TEST_CASE("Test comparability of the two strong types", "[strong_type_comparable]")
 {
-    using integer_t = strong_type::strong_type<int, struct comparable_st_tag, strong_type::comparable>;
+    using integer_t = strong_type::strong_type<int, "integer_t", strong_type::comparable>;
 
     integer_t one{ 1 };
     integer_t two{ 2 };

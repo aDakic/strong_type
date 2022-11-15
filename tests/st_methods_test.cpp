@@ -3,7 +3,7 @@
 
 TEST_CASE("Test get methods of strong type", "[strong_type_methods]")
 {
-    using integer_t = strong_type::strong_type<int, struct int_tag>;
+    using integer_t = strong_type::strong_type<int, "integer_t">;
 
     integer_t number{ 3 };
     const integer_t const_num{ 4 };
@@ -19,7 +19,7 @@ TEST_CASE("Test get methods of strong type", "[strong_type_methods]")
 
 TEST_CASE("Test get methods of strong type in compile time", "[strong_type_methods]")
 {
-    using integer_t = strong_type::strong_type<int, struct int_tag>;
+    using integer_t = strong_type::strong_type<int, "integer_t">;
 
     constexpr integer_t number{ 3 };
     STATIC_REQUIRE(number.get() == 3);

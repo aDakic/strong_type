@@ -1,4 +1,4 @@
-#include "strong_type/static_string.hpp"
+#include "strong_type/features/static_string.hpp"
 
 #include "catch2/catch_all.hpp"
 

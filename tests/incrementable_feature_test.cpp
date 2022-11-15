@@ -3,8 +3,7 @@
 
 TEST_CASE("Test increment operator of the strong type", "[strong_type_incrementable]")
 {
-    using integer_t =
-        strong_type::strong_type<int, struct incrementable_st_tag, strong_type::comparable, strong_type::incrementable>;
+    using integer_t = strong_type::strong_type<int, "integer_t", strong_type::comparable, strong_type::incrementable>;
 
     integer_t number{ 1 };
     integer_t one{ 1 };
