@@ -2,7 +2,7 @@
 
 #include <concepts>
 
-#include "strip.hpp"
+#include "../strip.hpp"
 
 namespace strong_type
 {

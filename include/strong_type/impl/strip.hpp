@@ -1,14 +1,14 @@
 #pragma once
 
-#include "s_type_traits.hpp"
+#include "s_type_concpts.hpp"
 
 namespace strong_type
 {
-    // Gets underlying type
+    // Gets underlying value
     template<typename T>
     constexpr inline decltype(auto) strip(T &&t)
     {
-        if constexpr (traits::is_strong_type_v<std::remove_cvref_t<T>>)
+        if constexpr (StrongTypeConcept<T>)
         {
             return std::forward<T>(t).get();
         }

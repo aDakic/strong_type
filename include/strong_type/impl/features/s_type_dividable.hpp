@@ -1,6 +1,6 @@
 #pragma once
 
-#include "strip.hpp"
+#include "../strip.hpp"
 
 namespace strong_type
 {

@@ -13,7 +13,8 @@ endif()
 if(${PROJECT_NAME}_ENABLE_CLANG_FORMAT)
 file(GLOB_RECURSE ALL_SOURCE_FILES
      ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/*.hpp
-     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/features/*.hpp
+     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/impl/*.hpp
+     ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/impl/features/*.hpp
      ${PROJECT_SOURCE_DIR}/tests/*.cpp)
 
 find_program(${PROJECT_NAME}_CLANG_FORMAT_BINARY clang-format)

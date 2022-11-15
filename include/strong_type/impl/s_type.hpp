@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <utility>
 
-#include "features/static_string.hpp"
+#include "static_string.hpp"
 
 namespace strong_type
 {
