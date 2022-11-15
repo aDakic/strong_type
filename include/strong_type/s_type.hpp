@@ -3,6 +3,8 @@
 #include <type_traits>
 #include <utility>
 
+#include "static_string.hpp"
+
 namespace strong_type
 {
     template<typename T>

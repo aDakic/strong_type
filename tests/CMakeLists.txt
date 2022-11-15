@@ -7,7 +7,8 @@ set(test_sources
     dividable_feature_test.cpp
     incrementable_feature_test.cpp
     multiplicable_feature_test.cpp
-    subtractable_feature_test.cpp)
+    subtractable_feature_test.cpp
+    static_string_test.cpp)
 
 find_package(Catch2 REQUIRED)
 
